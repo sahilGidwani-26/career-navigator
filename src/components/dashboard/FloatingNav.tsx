@@ -30,9 +30,9 @@ const FloatingNav = () => {
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.5, type: 'spring', damping: 20 }}
-      className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50"
+      className="fixed inset-x-0 bottom-4 sm:bottom-6 z-40 flex justify-center px-3 md:pl-[280px]"
     >
-      <div className="glass-card px-4 py-3 flex items-center gap-2">
+      <div className="glass-card max-w-full px-2 sm:px-4 py-2 sm:py-3 flex items-center gap-0.5 sm:gap-2 overflow-x-auto scrollbar-none">
         {navItems.map((item) => {
           const isActive = location.pathname === item.href;
           return (
@@ -40,7 +40,7 @@ const FloatingNav = () => {
               key={item.href}
               to={item.href}
               className={cn(
-                "relative flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-all duration-200",
+                "relative flex flex-col items-center gap-1 px-2 sm:px-3 py-2 rounded-xl transition-all duration-200 shrink-0",
                 isActive
                   ? "text-primary"
                   : "text-muted-foreground hover:text-foreground"
@@ -53,8 +53,8 @@ const FloatingNav = () => {
                   transition={{ type: 'spring', damping: 25, stiffness: 300 }}
                 />
               )}
-              <item.icon className="w-5 h-5 relative z-10" />
-              <span className="text-xs font-medium relative z-10 hidden md:block">
+              <item.icon className="w-5 h-5 relative z-10 shrink-0" />
+              <span className="text-xs font-medium relative z-10 hidden md:block whitespace-nowrap">
                 {item.label}
               </span>
             </Link>
