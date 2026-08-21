@@ -97,6 +97,8 @@ const DashboardSidebar = () => {
         
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
+          aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+          aria-expanded={!isCollapsed}
           className="p-2 rounded-lg hover:bg-muted transition-colors shrink-0"
         >
           {isCollapsed ? (
@@ -108,7 +110,7 @@ const DashboardSidebar = () => {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 min-h-0 overflow-y-auto p-4 space-y-2">
+      <nav aria-label="Dashboard sections" className="flex-1 min-h-0 overflow-y-auto p-4 space-y-2">
         {/* Home Link */}
         <Link
           to="/dashboard"
@@ -139,6 +141,8 @@ const DashboardSidebar = () => {
           <div key={section.id}>
             <button
               onClick={() => !isCollapsed && toggleSection(section.id)}
+              aria-label={section.title}
+              aria-expanded={expandedSections.includes(section.id) && !isCollapsed}
               className={cn(
                 "w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200",
                 expandedSections.includes(section.id) && !isCollapsed

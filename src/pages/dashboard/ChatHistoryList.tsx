@@ -107,7 +107,7 @@ const ChatHistoryList = () => {
                 className="glass-card p-12 text-center"
               >
                 <MessageSquare className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-primary mb-2">No conversations yet</h3>
+                <h2 className="text-lg font-semibold text-primary mb-2">No conversations yet</h2>
                 <p className="text-muted-foreground mb-6">Start chatting with our AI career advisor</p>
                 <Link to="/resources">
                   <Button className="btn-primary">Start Chat</Button>
