@@ -18,6 +18,7 @@ import ResumesUploaded from "./pages/dashboard/ResumesUploaded";
 import ResourcesList from "./pages/dashboard/ResourcesList";
 import JobsList from "./pages/dashboard/JobsList";
 import ChatHistoryList from "./pages/dashboard/ChatHistoryList";
+import Quiz from "./pages/Quiz";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ const App = () => (
               <Route path="/dashboard/resources" element={<ResourcesList />} />
               <Route path="/dashboard/jobs" element={<JobsList />} />
               <Route path="/dashboard/chat-history" element={<ChatHistoryList />} />
+              <Route path="/quiz" element={<Quiz />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

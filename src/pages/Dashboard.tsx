@@ -11,7 +11,8 @@ import {
   Sparkles,
   ArrowRight,
   TrendingUp,
-  Key
+  Key,
+  ClipboardList
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useUser } from '@/contexts/UserContext';
@@ -70,6 +71,13 @@ const featureCards = [
     icon: MessageSquare,
     href: '/resources',
     gradient: 'from-pink-500 to-rose-500',
+  },
+  {
+    title: 'Career Quiz',
+    description: 'Take a short quiz to personalize your guidance',
+    icon: ClipboardList,
+    href: '/quiz',
+    gradient: 'from-teal-500 to-sky-500',
   },
 ];
 
