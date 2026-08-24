@@ -15,7 +15,20 @@ interface QuizQuestion {
   id: string;
   question: string;
   options: string[];
-  correctIndex?: number; 
+  correctIndex?: number;
+}
+
+
+interface QuizSubmission {
+  full_name: string;
+  email: string;
+  phone: string | null;
+  answers: {
+    questionId: string;
+    question: string;
+    selectedOption: string;
+  }[];
+  score: number | null;
 }
 
 
@@ -89,7 +102,7 @@ const Quiz = () => {
   };
 
   const handleNext = () => {
-   
+
     if (answers[currentQuestion.id] === undefined) {
       setValidationMessage('Please select an option before continuing.');
       return;
@@ -132,15 +145,17 @@ const Quiz = () => {
         }, 0);
       }
 
+      const submission: QuizSubmission = {
+        full_name: studentInfo.fullName.trim(),
+        email: studentInfo.email.trim(),
+        phone: studentInfo.phone.trim() || null,
+        answers: formattedAnswers,
+        score,
+      };
+
       const { error } = await supabase
-        .from('quiz_submissions' as any)
-        .insert({
-          full_name: studentInfo.fullName.trim(),
-          email: studentInfo.email.trim(),
-          phone: studentInfo.phone.trim() || null,
-          answers: formattedAnswers,
-          score,
-        } as any);
+        .from('quiz_submissions')
+        .insert(submission);
 
       if (error) throw error;
 
@@ -173,7 +188,7 @@ const Quiz = () => {
 
           <div className="max-w-xl mx-auto">
             <AnimatePresence mode="wait">
-            
+
               {step === 'info' && (
                 <motion.div
                   key="info"
@@ -248,7 +263,7 @@ const Quiz = () => {
                 </motion.div>
               )}
 
-          
+
               {step === 'quiz' && currentQuestion && (
                 <motion.div
                   key="quiz"
@@ -274,11 +289,10 @@ const Quiz = () => {
                             role="radio"
                             aria-checked={isSelected}
                             onClick={() => handleSelectOption(index)}
-                            className={`w-full text-left px-4 py-3 rounded-xl border transition-colors ${
-                              isSelected
+                            className={`w-full text-left px-4 py-3 rounded-xl border transition-colors ${isSelected
                                 ? 'border-secondary bg-secondary/10 text-primary font-medium'
                                 : 'border-border hover:bg-muted text-foreground'
-                            }`}
+                              }`}
                           >
                             {option}
                           </button>
@@ -286,7 +300,7 @@ const Quiz = () => {
                       })}
                     </div>
 
-                    
+
                     <div aria-live="polite" role="status" className="mt-4 min-h-[1.5rem]">
                       {validationMessage && (
                         <p className="text-sm text-destructive">{validationMessage}</p>
@@ -319,7 +333,7 @@ const Quiz = () => {
                 </motion.div>
               )}
 
-            
+
               {step === 'complete' && (
                 <motion.div
                   key="complete"
