@@ -110,7 +110,7 @@ const ResumesCreated = () => {
                 className="glass-card p-12 text-center"
               >
                 <FileText className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-primary mb-2">No resumes yet</h3>
+                <h2 className="text-lg font-semibold text-primary mb-2">No resumes yet</h2>
                 <p className="text-muted-foreground mb-6">Start building your first resume with AI assistance</p>
                 <Link to="/resume-builder">
                   <Button className="btn-primary">Create Resume</Button>
@@ -137,7 +137,7 @@ const ResumesCreated = () => {
                         <Trash2 className="w-4 h-4" />
                       </button>
                     </div>
-                    <h3 className="font-semibold text-primary mb-2">{resume.title}</h3>
+                    <h2 className="font-semibold text-primary mb-2">{resume.title}</h2>
                     <div className="flex items-center gap-1 text-sm text-muted-foreground">
                       <Calendar className="w-4 h-4" />
                       {new Date(resume.created_at).toLocaleDateString()}
